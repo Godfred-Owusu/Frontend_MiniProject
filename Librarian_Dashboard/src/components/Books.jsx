@@ -19,7 +19,9 @@ const Books = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/books");
+        const response = await axios.get(
+          "https://backend-mini-project-45cj.vercel.app/api/books"
+        );
         setBooks(response.data);
       } catch (error) {
         console.error("Error fetching books:", error);
