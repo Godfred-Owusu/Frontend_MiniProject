@@ -49,7 +49,7 @@ const DeleteModal = ({ open, onClose, bookId, onDelete }) => {
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:3000/api/books/${bookId}`);
+      await axios.delete(`https://backend-mini-project-45cj.vercel.app/api/books/${bookId}`);
       toast.success("Book deleted successfully!");
       onDelete(bookId); // Call the onDelete prop to update the parent component state
       onClose(); // Close the modal after deletion

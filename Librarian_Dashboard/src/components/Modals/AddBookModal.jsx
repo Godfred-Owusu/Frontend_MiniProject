@@ -24,7 +24,7 @@ const AddBookModal = ({ open, onClose, onAdd }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/books",
+        "https://backend-mini-project-45cj.vercel.app/api/books",
         formData
       );
       toast.success("Book added successfully!");

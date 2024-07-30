@@ -33,7 +33,7 @@ const AddBook = ({ onClose }) => {
       // // alert("Book added successfully!");
       // toast.success("Book added successfully!");
 
-      await axios.post("http://localhost:3000/api/books", formData);
+      await axios.post("https://backend-mini-project-45cj.vercel.app/api/books", formData);
       toast.success("Book added successfully!");
       setFormData({
         title: "",

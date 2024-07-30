@@ -10,7 +10,7 @@ const Dashboard = () => {
     const countBook = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/books/count"
+          "https://backend-mini-project-45cj.vercel.app/api/books/count"
         );
         setTotalBooks(response.data.total);
       } catch (error) {

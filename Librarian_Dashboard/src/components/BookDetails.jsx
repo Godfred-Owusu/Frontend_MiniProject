@@ -9,7 +9,7 @@ const BookDetails = () => {
     const getbookDetails = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/api/books/${id}`
+          `https://backend-mini-project-45cj.vercel.app/api/books/${id}`
         );
         setBookDetails(response.data);
         console.log(response);

@@ -29,7 +29,7 @@ const EditModal = ({ open, onClose, bookId, book, onEdit }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/books/${bookId}`,
+        `https://backend-mini-project-45cj.vercel.app/api/books/${bookId}`,
         editedBook
       );
       onEdit(response.data);
