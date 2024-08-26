@@ -7,6 +7,8 @@ import DeleteModal from "./Modals/BookDeleteModal";
 import EditModal from "./Modals/EditBookModal";
 import { IoAddCircle } from "react-icons/io5";
 import AddBookModal from "./Modals/AddBookModal";
+import BorrowBookModal from "./Modals/BorrowBookModal";
+import { Tooltip } from "react-tooltip";
 
 const Books = () => {
   const [books, setBooks] = useState([]);
@@ -16,6 +18,8 @@ const Books = () => {
   const [openAddBook, setOpenAddBook] = useState(false);
   const [openAdd, setOpenAdd] = useState(false);
   const [bookId, setBookId] = useState("");
+  const [openBorrow, setOpenBorrow] = useState(false);
+  const [openBorrowBook, setOpenBorrowBook] = useState(false);
   useEffect(() => {
     const fetchBooks = async () => {
       try {
@@ -52,6 +56,24 @@ const Books = () => {
     setBooks((prevBooks) => prevBooks.filter((book) => book._id !== id));
   };
 
+  const handleBorrowClick = (bookId) => {
+    setBookId(bookId);
+    setOpenBorrow(true);
+  };
+
+  // const handleBorrowBook = async (studentData) => {
+  //   try {
+  //     const response = await axios.post("http://localhost:3000/api/students", {
+  //       ...studentData,
+  //       bookId,
+  //     });
+  //     toast.success("Book borrowed successfully!");
+  //     setOpenBorrowBook(false);
+  //   } catch (error) {
+  //     toast.error(error.response.data.message);
+  //   }
+  // };
+
   return (
     <div>
       <div
@@ -60,7 +82,7 @@ const Books = () => {
       >
         <h1>Books Record</h1>
         <div className="flex items-center justify-end gap-2 w-fit bg-green-500 px-3 py-1 rounded cursor-pointer">
-          <IoAddCircle class="text-white text-xl" />
+          <IoAddCircle className="text-white text-xl" />
           <h1 className="text-xl text-white cursor-pointer">Books</h1>
         </div>
       </div>
@@ -106,22 +128,34 @@ const Books = () => {
               <td className="px-4 py-2 border-b border-gray-200">
                 <div className="flex gap-3">
                   {/* borrow book */}
-                  <div className="cursor-pointer bg-green-700 p-2 rounded">
-                    <GiRead color="white" />
+                  <div
+                    onClick={() => handleBorrowClick(book._id)}
+                    className="cursor-pointer bg-green-700 p-2 rounded"
+                  >
+                    <GiRead color="white" id="borrow-tooltip" />
+                    <Tooltip anchorSelect="#borrow-tooltip" place="left">
+                      Borrow Book
+                    </Tooltip>
                   </div>
                   {/* edit book */}
                   <div
                     onClick={() => handleEditClick(book)}
                     className="cursor-pointer bg-yellow-500 p-2 rounded"
                   >
-                    <CiEdit color="white" />
+                    <CiEdit color="white" id="edit-tooltip" />
+                    <Tooltip anchorSelect="#edit-tooltip" place="top">
+                      Edit Book
+                    </Tooltip>
                   </div>
                   {/* delete book */}
                   <div
                     onClick={() => setOpenDelete(true)}
                     className="cursor-pointer bg-red-700 p-2 rounded"
                   >
-                    <MdDeleteForever color="white" />
+                    <MdDeleteForever color="white" id="delete-tooltip" />
+                    <Tooltip anchorSelect="#delete-tooltip" place="rigth">
+                      Delete Book
+                    </Tooltip>
                   </div>
                 </div>
               </td>
@@ -152,6 +186,12 @@ const Books = () => {
           onEdit={handleEdit}
         />
       )}
+
+      <BorrowBookModal
+        open={openBorrow}
+        onClose={() => setOpenBorrow(false)}
+        bookId={bookId}
+      />
     </div>
   );
 };

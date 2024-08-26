@@ -13,7 +13,7 @@ const Sidebar = () => {
   const { sidebarToggle } = useContext(MenuToggleContext);
 
   return (
-    <div className="flex flex-col bg-neutral-300 dark:bg-[#060B26] w-fit  p-3 text-black dark:text-white h-full overflow-y-auto">
+    <div className="flex flex-col bg-white shadow-lg dark:bg-[#060B26] w-fit  p-3 text-black dark:text-white h-full overflow-y-auto">
       <div className="flex justify-between items-center gap-5">
         <div className="flex items-center gap-1 px-1 py-3">
           <img
@@ -40,7 +40,7 @@ const Sidebar = () => {
             <div
               className={` ${
                 location.pathname === item.path
-                  ? "bg-neutral-700  text-red-400 font-semibold"
+                  ? "bg-neutral-700  text-white font-semibold"
                   : ""
               } flex  items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700 active:bg-neutral-600 rounded-md text-base`}
             >
